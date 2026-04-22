@@ -1,0 +1,16 @@
+{
+  "name": "DATE LIST",
+  "short_name": "DATE LIST",
+  "description": "健一とナミのやりたいことメモ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faeee7",
+  "theme_color": "#faeee7",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
