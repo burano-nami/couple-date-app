@@ -15,9 +15,9 @@ export function DateList({
   onDelete,
 }: DateListProps) {
   return (
-    <div className="px-6 pb-6">
+    <div className="h-full px-6 pb-6">
       <div
-        className={`h-[100dvh] max-h-[60vh] overflow-y-auto space-y-2 pr-1 ${activeTab === 'completed' ? 'opacity-70' : ''}`}
+        className={`h-full overflow-y-auto space-y-2 pr-1 ${activeTab === 'completed' ? 'opacity-70' : ''}`}
       >
       {ideas.length === 0 ? (
         <div className="h-full flex flex-col items-center justify-center text-center">
@@ -70,7 +70,7 @@ export function DateList({
           {/* Delete Button */}
           <button
             onClick={() => onDelete(idea.id)}
-            className="flex-shrink-0 p-2 -m-2 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-all"
+            className="flex-shrink-0 p-2 -m-2 text-muted-foreground/20 hover:text-destructive transition-all"
           >
             <Trash2 className="w-4 h-4" />
           </button>

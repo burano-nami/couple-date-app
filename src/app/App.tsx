@@ -81,8 +81,8 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-card rounded-[1.5rem] shadow-lg overflow-hidden">
+    <div className="h-dvh bg-background flex items-center justify-center p-4">
+      <div className="w-full max-w-md h-full max-h-[800px] bg-card rounded-[1.5rem] shadow-lg flex flex-col overflow-hidden">
         {/* Header */}
         <div className="px-6 pt-8 pb-6">
           <h1 className="text-center text-foreground mb-2">Our Date Ideas</h1>
@@ -118,18 +118,20 @@ export default function App() {
         </div>
 
         {/* Date List */}
-        {loading ? (
-          <div className="px-6 pb-6 h-[60vh] flex items-center justify-center">
-            <p className="text-muted-foreground text-sm">読み込み中...</p>
-          </div>
-        ) : (
-          <DateList
-            ideas={filteredIdeas}
-            activeTab={activeTab}
-            onToggleComplete={toggleComplete}
-            onDelete={requestDelete}
-          />
-        )}
+        <div className="flex-1 overflow-hidden">
+          {loading ? (
+            <div className="h-full flex items-center justify-center">
+              <p className="text-muted-foreground text-sm">読み込み中...</p>
+            </div>
+          ) : (
+            <DateList
+              ideas={filteredIdeas}
+              activeTab={activeTab}
+              onToggleComplete={toggleComplete}
+              onDelete={requestDelete}
+            />
+          )}
+        </div>
 
         {/* Add Form */}
         {activeTab === 'active' && <AddDateForm onAdd={addIdea} />}
