@@ -19,15 +19,8 @@ export default function App() {
 
   useEffect(() => {
     fetchIdeas();
-
-    const channel = supabase
-      .channel('date_ideas')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'date_ideas' }, () => {
-        fetchIdeas();
-      })
-      .subscribe();
-
-    return () => { supabase.removeChannel(channel); };
+    const interval = setInterval(fetchIdeas, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchIdeas = async () => {
