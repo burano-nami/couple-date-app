@@ -7,7 +7,6 @@ interface AddDateFormProps {
 
 export function AddDateForm({ onAdd }: AddDateFormProps) {
   const [inputValue, setInputValue] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,16 +18,14 @@ export function AddDateForm({ onAdd }: AddDateFormProps) {
   };
 
   return (
-    <div className="sticky bottom-0 bg-gradient-to-t from-card via-card to-transparent pt-8 pb-6 px-6">
+    <div className="sticky bottom-0 pt-8 pb-6 px-6" style={{ background: 'linear-gradient(to top, var(--cat-bg) 60%, transparent)' }}>
       <form onSubmit={handleSubmit} className="relative">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
           placeholder="Add a new date idea..."
-          className="w-full px-4 py-3.5 pr-12 bg-input-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+          className="w-full px-4 py-3.5 pr-12 bg-input-background border border-border rounded-xl text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
         />
         <button
           type="submit"

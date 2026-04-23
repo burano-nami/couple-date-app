@@ -4,15 +4,21 @@ import { DateList } from './components/DateList';
 import { AddDateForm } from './components/AddDateForm';
 import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 
+export type Category = 'おでかけ' | 'やりたい' | '旅行';
+
 export interface DateIdea {
   id: string;
   text: string;
   completed: boolean;
+  category: Category;
 }
+
+const CATEGORIES: Category[] = ['おでかけ', 'やりたい', '旅行'];
+
 
 export default function App() {
   const [dateIdeas, setDateIdeas] = useState<DateIdea[]>([]);
-  const [activeTab, setActiveTab] = useState<'active' | 'completed'>('active');
+  const [activeCategory, setActiveCategory] = useState<Category>('おでかけ');
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [ideaToDelete, setIdeaToDelete] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +41,7 @@ export default function App() {
   const addIdea = async (text: string) => {
     const { data } = await supabase
       .from('date_ideas')
-      .insert({ text, completed: false })
+      .insert({ text, completed: false, category: activeCategory })
       .select()
       .single();
     if (data) setDateIdeas((prev) => [data, ...prev]);
@@ -69,16 +75,14 @@ export default function App() {
     setIdeaToDelete(null);
   };
 
-  const filteredIdeas = dateIdeas.filter((idea) =>
-    activeTab === 'active' ? !idea.completed : idea.completed
-  );
+  const filteredIdeas = dateIdeas.filter((idea) => idea.category === activeCategory);
 
   return (
     <div className="h-dvh bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md h-full max-h-[800px] bg-card rounded-[1.5rem] shadow-lg flex flex-col overflow-hidden">
+      <div className="w-full max-w-md h-full max-h-[800px] bg-card rounded-[1.5rem] shadow-lg flex flex-col overflow-hidden" data-category={activeCategory}>
         {/* Header */}
         <div className="px-6 pt-8 pb-6">
-          <h1 className="text-center text-foreground mb-2">Our Date Ideas</h1>
+          <h1 className="text-center text-foreground mb-2">DATE LIST</h1>
           <p className="text-center text-muted-foreground text-sm">
             健一とナミのやりたいことメモ
           </p>
@@ -87,26 +91,21 @@ export default function App() {
         {/* Tab Switcher */}
         <div className="px-6 pb-4">
           <div className="bg-secondary/50 rounded-xl p-1 flex gap-1">
-            <button
-              onClick={() => setActiveTab('active')}
-              className={`flex-1 py-2.5 rounded-lg transition-all ${
-                activeTab === 'active'
-                  ? 'bg-white shadow-sm text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              これから
-            </button>
-            <button
-              onClick={() => setActiveTab('completed')}
-              className={`flex-1 py-2.5 rounded-lg transition-all ${
-                activeTab === 'completed'
-                  ? 'bg-white shadow-sm text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              思い出
-            </button>
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                data-category={cat}
+                className="flex-1 py-1.5 rounded-lg transition-all text-sm"
+                style={
+                  activeCategory === cat
+                    ? { backgroundColor: 'var(--cat-main)', color: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }
+                    : { color: 'var(--muted-foreground)' }
+                }
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -119,7 +118,6 @@ export default function App() {
           ) : (
             <DateList
               ideas={filteredIdeas}
-              activeTab={activeTab}
               onToggleComplete={toggleComplete}
               onDelete={requestDelete}
             />
@@ -127,7 +125,7 @@ export default function App() {
         </div>
 
         {/* Add Form */}
-        {activeTab === 'active' && <AddDateForm onAdd={addIdea} />}
+        <AddDateForm onAdd={addIdea} />
       </div>
 
       {/* Delete Confirmation Modal */}
