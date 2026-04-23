@@ -31,9 +31,7 @@ export function DateList({ ideas, onToggleComplete, onDelete }: DateListProps) {
               className={`group border border-border rounded-xl px-4 py-2 flex items-center gap-3 transition-all ${
                 idea.completed ? 'opacity-40' : ''
               }`}
-              style={{
-                backgroundColor: idea.completed ? 'var(--cat-sub)' : 'var(--cat-bg)',
-              }}
+              style={{ backgroundColor: '#FAF9F7' }}
             >
               {/* Checkbox */}
               <button

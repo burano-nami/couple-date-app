@@ -79,12 +79,14 @@ export default function App() {
 
   return (
     <div className="h-dvh bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md h-full max-h-[800px] bg-card rounded-[1.5rem] shadow-lg flex flex-col overflow-hidden" data-category={activeCategory}>
+      <div className="w-full max-w-md h-full max-h-[800px] rounded-[1.5rem] shadow-lg flex flex-col overflow-hidden" style={{ backgroundColor: 'var(--cat-bg)' }} data-category={activeCategory}>
         {/* Header */}
         <div className="px-6 pt-8 pb-6">
           <h1 className="text-center text-foreground mb-2">DATE LIST</h1>
           <p className="text-center text-muted-foreground text-sm">
             健一とナミのやりたいことメモ
+            <br/>
+            〜〜〜デザインは調整中なり〜〜〜
           </p>
         </div>
 

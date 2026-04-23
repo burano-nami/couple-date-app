@@ -2,23 +2,17 @@
 
 :root {
   --font-size: 16px;
-  --background: #faeee7;
-  --foreground: #33272a;
+  --background: #FAF9F7;
+  --foreground: #2C2218;
   --card: #ffffff;
-  --card-foreground: #33272a;
-  --primary: #ff8ba7;
-  --primary-foreground: #33272a;
-  --secondary: #f5d5cb;
-  --secondary-foreground: #33272a;
-  --muted: #f2e0d9;
-  --muted-foreground: #594a4e;
+  --secondary: #F2EDE6;
+  --muted-foreground: #6B6058;
   --destructive: #e65770;
-  --destructive-foreground: #ffffff;
-  --border: rgba(255, 139, 167, 0.2);
-  --input-background: #fdf4f0;
+  --border: rgba(0, 0, 0, 0.08);
+  --input-background: var(--background);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #e5a89d;
+  --ring: #D9D0C5;
   --radius: 0.75rem;
 }
 
@@ -26,15 +20,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input-background: var(--input-background);
   --color-ring: var(--ring);
@@ -124,19 +113,19 @@
 
 /* カテゴリカラー定義 */
 [data-category="おでかけ"] {
-  --cat-main: #ff8ba7;
-  --cat-bg: #fff0f3;
-  --cat-sub: #ffd6e0;
+  --cat-main: #D4758A;
+  --cat-bg: #FAE8EC;
+  --cat-sub: #F0BFCA;
 }
 
 [data-category="やりたい"] {
-  --cat-main: #ffb347;
-  --cat-bg: #fff8ee;
-  --cat-sub: #ffe4b5;
+  --cat-main: #D4845A;
+  --cat-bg: #FAF0EA;
+  --cat-sub: #F0CCBA;
 }
 
 [data-category="旅行"] {
-  --cat-main: #7eb8f7;
-  --cat-bg: #eff6ff;
-  --cat-sub: #bfdbfe;
+  --cat-main: #7AAF95;
+  --cat-bg: #E8F5EE;
+  --cat-sub: #BCDECE;
 }
